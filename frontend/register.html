@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - CareerWise AI</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h2>CareerWise AI</h2>
+        <h3>User Registration</h3>
+
+        <form id="registerForm">
+
+            <input type="text" id="name"
+                   placeholder="Full Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Email Address" required>
+
+            <input type="password" id="password"
+                   placeholder="Password" required>
+
+            <select id="careerInterest">
+                <option value="Java Full Stack Developer">
+                    Java Full Stack Developer
+                </option>
+                <option value="Data Scientist">
+                    Data Scientist
+                </option>
+                <option value="AI Engineer">
+                    AI Engineer
+                </option>
+                <option value="Cloud Engineer">
+                    Cloud Engineer
+                </option>
+                <option value="Cyber Security">
+                    Cyber Security
+                </option>
+            </select>
+
+            <button type="submit" id="registerButton">Register</button>
+             <button onclick="window.location.href='index.html'">
+Back
+</button>
+
+        </form>
+
+        <p id="message" style="text-align:center; margin-top:15px; font-weight:bold;"></p>
+
+        <p>
+            Already registered?
+            <a href="login.html">User Login</a>
+        </p>
+        <p>
+    <a href="admin-register.html">Register as Admin</a>
+</p>
+
+    </div>
+</div>
+
+\<script>
+document.getElementById("registerForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const messageBox = document.getElementById("message");
+    const registerButton = document.getElementById("registerButton");
+
+    const userData = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value,
+        careerInterest: document.getElementById("careerInterest").value
+    };
+
+    registerButton.disabled = true;
+    registerButton.innerText = "Registering...";
+    messageBox.innerText = "";
+
+    try {
+        const response = await fetch("http://localhost:8082/users/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage || "Registration failed");
+        }
+
+        // Backend sends saved user JSON. Read it but do not display it.
+        const savedUser = await response.json();
+
+        messageBox.style.color = "green";
+        messageBox.innerText = "Registration successful! Redirecting to login...";
+
+        setTimeout(function () {
+            window.location.href = "login.html";
+        }, 1500);
+
+    } catch (error) {
+        console.error(error);
+
+        messageBox.style.color = "red";
+        messageBox.innerText = error.message || "Registration failed";
+
+        registerButton.disabled = false;
+        registerButton.innerText = "Register";
+    }
+});
+</script>
+
+</body>
+</html>

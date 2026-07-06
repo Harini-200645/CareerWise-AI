@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Name</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:400px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#4f46e5;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 20px;
+}
+
+h2{
+    color:#4f46e5;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#4f46e5;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#4338ca;
+}
+
+</style>
+</head>
+<div class="container">
+
+    <div class="avatar" id="avatar">
+        HG
+    </div>
+
+    <h2>Change Name</h2>
+
+    <input
+        type="text"
+        id="newName"
+        placeholder="Enter your new name">
+
+    <button onclick="updateName()">
+        Save Changes
+    </button>
+<body>
+    <br><br>
+    <button class="back-btn"
+        onclick="window.location.href='index.html'">
+        ← go back
+    </button>
+</div>
+
+<script>
+
+window.onload = function(){
+
+    let savedName = localStorage.getItem("userName");
+
+    if(savedName){
+        document.getElementById("avatar").innerHTML =
+        savedName.substring(0,2).toUpperCase();
+
+        document.getElementById("newName").value =
+        savedName;
+    }
+}
+
+function updateName(){
+
+    let name =
+    document.getElementById("newName").value;
+
+    if(name.trim() === ""){
+        alert("Please enter a name");
+        return;
+    }
+
+    localStorage.setItem("userName", name);
+
+    alert("Name Updated Successfully!");
+
+    window.location.href = "profile.html";
+}
+
+</script>
+
+</body>
+</html>
+```

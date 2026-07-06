@@ -1,0 +1,11 @@
+{
+    "editor.fontSize": 14,
+
+    "java.configuration.updateBuildConfiguration": "automatic",
+
+    "java.validation.problem.severity": {
+        "unknown-property": "ignore"
+    },
+    "java.compile.nullAnalysis.mode": "automatic",
+    "liveServer.settings.port": 8083
+}

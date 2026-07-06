@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerWise </title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+    <!-- Your page content -->
+
+    <script>
+    function toggleProfileMenu() {
+        const menu = document.getElementById("profileMenu");
+
+        if(menu.style.display === "block"){
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
+        }
+    }
+
+    function changeName() {
+        let newName = prompt("Enter your name:");
+
+        if(newName && newName.trim() !== ""){
+            document.querySelector(".avatar").innerText =
+                newName.substring(0,2).toUpperCase();
+
+            localStorage.setItem("userName", newName);
+        }
+    }
+
+    window.onload = function() {
+        let savedName = localStorage.getItem("userName");
+
+        if(savedName){
+            document.querySelector(".avatar").innerText =
+                savedName.substring(0,2).toUpperCase();
+        }
+    }
+    </script>
+
+</body>
+</html>
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-diamond"></i>
+            </div>
+
+            <div>
+                <h2>CareerWise </h2>
+            </div>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="Explorer.html">Explorer</a></li>
+            <li><a href="Dashboard.html">dashboard</a></li>
+            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="About.html">About us</a></li>
+
+        </ul>
+
+        <div class="user-profile">
+
+    <button class="status-btn">
+        ACTIVE
+    </button>
+
+    <div class="avatar" onclick="toggleProfileMenu()">
+        HG
+    </div>
+
+    <div class="profile-menu" id="profileMenu">
+        <a href="profile.html">Edit Profile</a>
+        <a href="Change Name.html" >Change Name</a>
+        <a href="login.html">Logout</a>
+    </div>
+
+</div>
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <span class="badge">
+                Free Guidance
+            </span>
+
+            <h1>
+                Map your
+                <span>future</span>
+                career in seconds.
+            </h1>
+
+            <p>
+                Discover your ideal career path using AI-powered recommendations,
+                skill assessment, aptitude matching and personalized learning
+                roadmaps.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="register.html">
+                    <button class="primary-btn">
+                      Login to Get Started
+                    </button>
+                </a>
+            </div>
+
+            <!-- Stats -->
+
+            <div class="stats">
+
+                <div class="card">
+                    <h2>15K+</h2>
+                    <p>Students</p>
+                </div>
+
+                <div class="card">
+                    <h2>94%</h2>
+                    <p>Placement Rate</p>
+                </div>
+
+                <div class="card">
+                    <h2>750+</h2>
+                    <p>Career Paths</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Panel -->
+
+        <div class="hero-right">
+
+            <div class="role-card">
+
+                <i class="fa-solid fa-code"></i>
+
+                <div>
+                    <h3>Java Full Stack Developer</h3>
+                    <p>Spring Boot • React • MySQL</p>
+                </div>
+
+                <span class="high-demand">
+                    High Demand
+                </span>
+
+            </div>
+
+            <div class="role-card">
+
+                <i class="fa-solid fa-database"></i>
+
+                <div>
+                    <h3>Backend Engineer</h3>
+                    <p>REST API • Hibernate • SQL</p>
+                </div>
+
+                <span class="high-demand">
+                    Trending
+                </span>
+
+            </div>
+
+            <div style="
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    margin-top:20px;">
+
+    <h3 style="
+        color:#4f46e5;
+        margin-bottom:15px;">
+        Career Growth Trend
+    </h3>
+
+    <p style="
+        color:#555;
+        line-height:1.7;
+        margin-bottom:20px;">
+
+        CareerWise AI helps you track your journey from career exploration
+        to becoming job-ready. The graph below represents your potential
+        growth through assessments, recommendations, skill development,
+        and roadmap completion.
+
+    </p>
+
+    <div style="
+        position:relative;
+        width:100%;
+        height:250px;
+        border-left:3px solid #ccc;
+        border-bottom:3px solid #ccc;">
+
+        <svg width="100%" height="250">
+
+            <polyline
+                points="20,220 100,190 180,170 260,130 340,90 420,50"
+                fill="none"
+                stroke="#4f46e5"
+                stroke-width="4"/>
+
+            <circle cx="20" cy="220" r="5" fill="#4f46e5"/>
+            <circle cx="100" cy="190" r="5" fill="#4f46e5"/>
+            <circle cx="180" cy="170" r="5" fill="#4f46e5"/>
+            <circle cx="260" cy="130" r="5" fill="#4f46e5"/>
+            <circle cx="340" cy="90" r="5" fill="#4f46e5"/>
+            <circle cx="420" cy="50" r="5" fill="#4f46e5"/>
+
+        </svg>
+
+        <div style="position:absolute;bottom:-20px;left:5px;font-size:12px;">
+            Start
+        </div>
+
+        <div style="position:absolute;bottom:-20px;left:80px;font-size:12px;">
+            Quiz
+        </div>
+
+        <div style="position:absolute;bottom:-20px;left:160px;font-size:12px;">
+            improve
+        </div>
+
+        <div style="position:absolute;bottom:-20px;left:240px;font-size:12px;">
+            Skills
+        </div>
+
+        <div style="position:absolute;bottom:-20px;left:320px;font-size:12px;">
+            Roadmap
+        </div>
+
+        <div style="position:absolute;bottom:-20px;left:400px;font-size:12px;">
+            Career
+        </div>
+
+    </div>
+
+
+
+</div>
+
+    </section>
+
+</body>
+
+</html>

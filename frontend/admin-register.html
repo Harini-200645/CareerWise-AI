@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration - CareerWise AI</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h2>CareerWise </h2>
+        <h3>Admin Registration</h3>
+
+        <form id="adminRegisterForm">
+
+            <input type="text" id="name"
+                   placeholder="Admin Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Admin Email Address" required>
+
+            <input type="password" id="password"
+                   placeholder="Admin Password" required>
+
+            <button type="submit" id="registerButton">
+                Register Admin
+            </button>
+            <button type="button"
+            onclick="window.location.href='register.html'">
+        Back
+    </button>
+
+        </form>
+
+        <p id="message"
+           style="text-align:center; margin-top:15px; font-weight:bold;">
+        </p>
+
+        <p>
+            Already an admin?
+            <a href="admin-login.html">Admin Login</a>
+        </p>
+
+        <p>
+            <a href="register.html">User Registration</a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+document.getElementById("adminRegisterForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const messageBox = document.getElementById("message");
+    const registerButton = document.getElementById("registerButton");
+
+    const adminData = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+    };
+
+    registerButton.disabled = true;
+    registerButton.innerText = "Registering...";
+
+    try {
+        const response = await fetch("http://localhost:8082/users/admin/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(adminData)
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+
+        messageBox.style.color = "green";
+        messageBox.innerText = "Admin registered successfully. Please login.";
+
+        setTimeout(() => {
+            window.location.href = "admin-login.html";
+        }, 1500);
+
+    } catch (error) {
+        messageBox.style.color = "red";
+        messageBox.innerText = error.message || "Admin registration failed";
+        registerButton.disabled = false;
+        registerButton.innerText = "Register Admin";
+    }
+});
+
+</script>
+
+</body>
+</html>

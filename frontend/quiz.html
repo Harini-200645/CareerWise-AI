@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerWise AI Quiz</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:30px;
+}
+
+.container{
+width:850px;
+background:white;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+overflow:hidden;
+}
+
+.header{
+background:linear-gradient(135deg,#4f46e5,#6366f1);
+color:white;
+padding:35px;
+text-align:center;
+}
+
+.header h1{
+font-size:34px;
+}
+
+.header p{
+margin-top:10px;
+font-size:16px;
+opacity:.9;
+}
+
+.content{
+padding:40px;
+}
+
+.student-form{
+margin-bottom:35px;
+}
+
+.student-form input,
+.student-form select{
+width:100%;
+padding:14px;
+margin-bottom:18px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+outline:none;
+}
+
+.student-form input:focus,
+.student-form select:focus{
+border-color:#4f46e5;
+}
+
+.startBtn{
+width:100%;
+padding:15px;
+background:#4f46e5;
+color:white;
+border:none;
+border-radius:10px;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+}
+
+.startBtn:hover{
+background:#3730a3;
+}
+
+#quizSection{
+display:none;
+}
+
+.progress{
+margin-bottom:25px;
+}
+
+.progress-text{
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.progress-bar{
+height:10px;
+background:#ddd;
+border-radius:30px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:10px;
+width:0%;
+background:#4f46e5;
+transition:.4s;
+}
+
+.question{
+font-size:24px;
+font-weight:bold;
+margin-bottom:30px;
+color:#222;
+}
+
+.option{
+display:block;
+width:100%;
+padding:16px;
+margin-bottom:15px;
+border:none;
+border-radius:12px;
+background:#eef2ff;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+text-align:left;
+}
+
+.option:hover{
+background:#4f46e5;
+color:white;
+transform:translateY(-2px);
+}
+
+.footer{
+margin-top:25px;
+display:flex;
+justify-content:space-between;
+}
+
+.footer button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+}
+
+#prevBtn{
+background:#d1d5db;
+}
+
+#nextBtn{
+background:#4f46e5;
+color:white;
+}
+
+#nextBtn:hover{
+background:#3730a3;
+}
+
+@media(max-width:768px){
+
+.container{
+width:100%;
+}
+
+.header h1{
+font-size:28px;
+}
+
+.question{
+font-size:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>CareerWise</h1>
+
+<p>Smart Career Recommendation Quiz</p>
+
+</div>
+
+<div class="content">
+
+<!-- Student Form -->
+
+<div id="studentSection">
+
+<div class="student-form">
+
+<input
+type="text"
+id="name"
+placeholder="Enter Full Name">
+
+<select id="education">
+
+<option value="">Select Education</option>
+
+<option>B.E </option>
+
+<option>B.Tech</option>
+
+<option>B.Sc</option>
+
+<option>BCA</option>
+
+<option>MCA</option>
+
+<option>Other</option>
+
+</select>
+
+<input
+type="text"
+id="department"
+placeholder="Department">
+
+<input
+type="text"
+id="year"
+placeholder="Year (12th,1st,2nd, 3rd, Final...)">
+
+<button
+class="startBtn"
+onclick="startQuiz()">
+
+Start Career Assessment →
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Quiz Section -->
+
+<div id="quizSection">
+
+<div class="progress">
+
+<div
+class="progress-text"
+id="progressText">
+
+Question 1 / 10
+
+</div>
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progressFill">
+
+</div>
+
+</div>
+
+</div>
+
+<div
+class="question"
+id="question">
+
+</div>
+
+<div id="options">
+
+</div>
+
+<div class="footer">
+
+<button
+id="prevBtn"
+onclick="previousQuestion()">
+
+Previous
+
+</button>
+
+<button
+id="nextBtn"
+onclick="nextQuestion()">
+
+Next
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</body>
+<script>
+
+// ==========================
+// QUESTIONS
+// ==========================
+
+const questions = [
+
+{
+question:"Which activity do you enjoy the most?",
+options:[
+{text:"Building websites or apps",career:"TECH"},
+{text:"Drawing or designing",career:"CREATIVE"},
+{text:"Helping sick people",career:"MEDICAL"},
+{text:"Managing business ideas",career:"BUSINESS"}
+]
+},
+
+{
+question:"Which subject do you like most?",
+options:[
+{text:"Mathematics",career:"TECH"},
+{text:"Biology",career:"MEDICAL"},
+{text:"Commerce",career:"BUSINESS"},
+{text:"Arts",career:"CREATIVE"}
+]
+},
+
+{
+question:"How do your friends describe you?",
+options:[
+{text:"Logical Thinker",career:"TECH"},
+{text:"Creative",career:"CREATIVE"},
+{text:"Helpful",career:"MEDICAL"},
+{text:"Leader",career:"BUSINESS"}
+]
+},
+
+{
+question:"What type of problems do you enjoy solving?",
+options:[
+{text:"Programming",career:"TECH"},
+{text:"Design",career:"CREATIVE"},
+{text:"Health",career:"MEDICAL"},
+{text:"Business Strategy",career:"BUSINESS"}
+]
+},
+
+{
+question:"What kind of workplace do you prefer?",
+options:[
+{text:"Software Company",career:"TECH"},
+{text:"Design Studio",career:"CREATIVE"},
+{text:"Hospital",career:"MEDICAL"},
+{text:"Corporate Office",career:"BUSINESS"}
+]
+},
+
+{
+question:"What motivates you most?",
+options:[
+{text:"Innovation",career:"TECH"},
+{text:"Creativity",career:"CREATIVE"},
+{text:"Helping People",career:"MEDICAL"},
+{text:"Money & Leadership",career:"BUSINESS"}
+]
+},
+
+{
+question:"Which tool would you like to use?",
+options:[
+{text:"Laptop",career:"TECH"},
+{text:"Drawing Tablet",career:"CREATIVE"},
+{text:"Medical Equipment",career:"MEDICAL"},
+{text:"Business Dashboard",career:"BUSINESS"}
+]
+},
+
+{
+question:"What is your dream career?",
+options:[
+{text:"AI Engineer",career:"TECH"},
+{text:"UI/UX Designer",career:"CREATIVE"},
+{text:"Doctor",career:"MEDICAL"},
+{text:"Entrepreneur",career:"BUSINESS"}
+]
+},
+
+{
+question:"Which skill do you already have?",
+options:[
+{text:"Coding",career:"TECH"},
+{text:"Graphic Design",career:"CREATIVE"},
+{text:"Patient Care",career:"MEDICAL"},
+{text:"Communication",career:"BUSINESS"}
+]
+},
+
+{
+question:"What would you like to do after graduation?",
+options:[
+{text:"Join an IT Company",career:"TECH"},
+{text:"Become Designer",career:"CREATIVE"},
+{text:"Work in Hospital",career:"MEDICAL"},
+{text:"Start Business",career:"BUSINESS"}
+]
+}
+
+];
+
+// ==========================
+// VARIABLES
+// ==========================
+
+let currentQuestion = 0;
+let selectedAnswers = [];
+
+let score = {
+    TECH: 0,
+    CREATIVE: 0,
+    MEDICAL: 0,
+    BUSINESS: 0
+};
+
+// ==========================
+// START QUIZ
+// ==========================
+
+function startQuiz() {
+
+    let name = document.getElementById("name").value.trim();
+    let education = document.getElementById("education").value;
+    let department = document.getElementById("department").value.trim();
+    let year = document.getElementById("year").value.trim();
+
+    if (!name || !education || !department || !year) {
+        alert("Please fill all student details.");
+        return;
+    }
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("education", education);
+    localStorage.setItem("department", department);
+    localStorage.setItem("year", year);
+
+    document.getElementById("studentSection").style.display = "none";
+    document.getElementById("quizSection").style.display = "block";
+
+    loadQuestion();
+}
+
+// ==========================
+// LOAD QUESTION
+// ==========================
+
+function loadQuestion() {
+
+    document.getElementById("progressText").innerHTML =
+        `Question ${currentQuestion + 1} / ${questions.length}`;
+
+    document.getElementById("progressFill").style.width =
+        ((currentQuestion + 1) / questions.length) * 100 + "%";
+
+    document.getElementById("question").innerHTML =
+        questions[currentQuestion].question;
+
+    let html = "";
+
+    questions[currentQuestion].options.forEach((option, index) => {
+
+        html += `
+            <button class="option"
+                onclick="selectOption('${option.career}', ${index})">
+                ${option.text}
+            </button>
+        `;
+    });
+
+    document.getElementById("options").innerHTML = html;
+
+    // restore selected state (IMPORTANT FIX)
+    if (selectedAnswers[currentQuestion]) {
+        let buttons = document.querySelectorAll(".option");
+        let selectedCareer = selectedAnswers[currentQuestion];
+
+        buttons.forEach((btn, i) => {
+            if (questions[currentQuestion].options[i].career === selectedCareer) {
+                btn.style.background = "#4f46e5";
+                btn.style.color = "white";
+            }
+        });
+    }
+}
+
+// ==========================
+// SELECT OPTION
+// ==========================
+
+function selectOption(career, index) {
+
+    selectedAnswers[currentQuestion] = career;
+
+    let buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(btn => {
+        btn.style.background = "#eef2ff";
+        btn.style.color = "black";
+    });
+
+    buttons[index].style.background = "#4f46e5";
+    buttons[index].style.color = "white";
+}
+
+// ==========================
+// NEXT
+// ==========================
+
+function nextQuestion() {
+
+    if (!selectedAnswers[currentQuestion]) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+    } else {
+        calculateResult();
+    }
+}
+
+// ==========================
+// PREVIOUS
+// ==========================
+
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
+    }
+}
+
+// ==========================
+// CALCULATE RESULT
+// ==========================
+
+function calculateResult() {
+
+    // reset score
+    score = { TECH: 0, CREATIVE: 0, MEDICAL: 0, BUSINESS: 0 };
+
+    selectedAnswers.forEach(answer => {
+        if (score.hasOwnProperty(answer)) {
+            score[answer]++;
+        }
+    });
+
+    // find top career category
+    let topCareer = Object.keys(score).reduce((a, b) =>
+        score[a] > score[b] ? a : b
+    );
+
+    let recommendedCareerTitle = "";
+    let skills = [];
+    let interests = [];
+    let strengths = [];
+
+    // =========================
+    // TECH
+    // =========================
+    if (topCareer === "TECH") {
+
+        recommendedCareerTitle = "AI Engineer / Software Developer";
+
+        skills = ["Java", "Python", "SQL", "HTML", "CSS", "JavaScript"];
+        interests = ["Artificial Intelligence", "Machine Learning", "Software Development"];
+        strengths = ["Logical Thinking", "Problem Solving", "Analytical Skills"];
+    }
+
+    // =========================
+    // CREATIVE
+    // =========================
+    else if (topCareer === "CREATIVE") {
+
+        recommendedCareerTitle = "UI/UX Designer / Graphic Designer";
+
+        skills = ["UI/UX Design", "Figma", "Photoshop", "Illustrator"];
+        interests = ["Graphic Design", "Animation", "Digital Media"];
+        strengths = ["Creativity", "Innovation", "Visual Thinking"];
+    }
+
+    // =========================
+    // MEDICAL
+    // =========================
+    else if (topCareer === "MEDICAL") {
+
+        recommendedCareerTitle = "Doctor / Medical Professional";
+
+        skills = ["Biology", "Patient Care", "Medical Knowledge"];
+        interests = ["Healthcare", "Medicine", "Research"];
+        strengths = ["Empathy", "Observation", "Communication"];
+    }
+
+    // =========================
+    // BUSINESS
+    // =========================
+    else {
+
+        recommendedCareerTitle = "Entrepreneur / Business Analyst";
+
+        skills = ["Marketing", "Finance", "Leadership", "Management"];
+        interests = ["Entrepreneurship", "Business Analytics"];
+        strengths = ["Leadership", "Decision Making", "Communication"];
+    }
+
+    // =========================
+    // SAVE TO LOCAL STORAGE
+    // =========================
+    localStorage.setItem("score", JSON.stringify(score));
+    localStorage.setItem("recommendedCareer", topCareer);
+    localStorage.setItem("recommendedCareerTitle", recommendedCareerTitle);
+
+    localStorage.setItem("skills", JSON.stringify(skills));
+    localStorage.setItem("interests", JSON.stringify(interests));
+    localStorage.setItem("strengths", JSON.stringify(strengths));
+
+    // =========================
+    // SUCCESS SCREEN
+    // =========================
+    document.getElementById("quizSection").innerHTML = `
+        <div style="text-align:center;padding:60px;">
+            <h1 style="color:#4f46e5;">🎉 Assessment Completed</h1>
+            <h2>Congratulations!</h2>
+            <p style="font-size:18px;color:gray;">
+                CareerWise AI has analyzed your answers.
+            </p>
+
+            <button onclick="goToResult()"
+                style="background:#4f46e5;color:white;padding:15px 35px;border:none;border-radius:10px;">
+                View AI Report →
+            </button>
+        </div>
+    `;
+}
+
+// ==========================
+// RESULT PAGE API CALL
+// ==========================
+
+async function goToResult() {
+
+    const request = {
+        name: localStorage.getItem("name"),
+        education: localStorage.getItem("education"),
+
+        recommendedCareer: localStorage.getItem("recommendedCareer"),
+        recommendedCareerTitle: localStorage.getItem("recommendedCareerTitle"),
+
+        skills: JSON.parse(localStorage.getItem("skills") || "[]"),
+        interests: JSON.parse(localStorage.getItem("interests") || "[]"),
+        strengths: JSON.parse(localStorage.getItem("strengths") || "[]")
+    };
+
+    console.log("Sending Request:", request);
+
+    try {
+        const response = await fetch("http://localhost:8082/api/recommendation", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(request)
+})
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Backend Error:", data);
+            throw new Error(data.message || "API Error");
+        }
+
+        localStorage.setItem("careerRecommendation", JSON.stringify(data));
+
+        window.location.href = "recommendation.html";
+
+    } catch (error) {
+        console.error("ERROR:", error);
+        alert("Backend error. Check console (F12).");
+    }
+}
+</script>
+
+</body>
+</html>

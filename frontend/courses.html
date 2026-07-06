@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerWise Courses</title>
+
+<link rel="stylesheet" href="courses.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="logo"> CareerWise</div>
+
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search courses...">
+<i class="fas fa-search"></i>
+</div>
+
+<button class="back-btn" onclick="location.href='dashboard.html'">
+<i class="fas fa-arrow-left"></i> Back
+</button>
+
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Learn Skills. Build Your Career.</h1>
+<p>Explore industry-leading courses in Programming, AI, Cloud, Cyber Security, Data Science and more.</p>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+<div>50+ Courses</div>
+<div>15+ Categories</div>
+<div>20K+ Students</div>
+<div>100+ Projects</div>
+</section>
+
+<!-- FILTERS -->
+<section class="categories">
+<button onclick="filterCourse('All')">All</button>
+<button onclick="filterCourse('Programming')">Programming</button>
+<button onclick="filterCourse('Web Development')">Web</button>
+<button onclick="filterCourse('AI')">AI</button>
+<button onclick="filterCourse('Data Science')">Data Science</button>
+<button onclick="filterCourse('Cloud')">Cloud</button>
+<button onclick="filterCourse('Cyber Security')">Cyber Security</button>
+<button onclick="filterCourse('DevOps')">DevOps</button>
+<button onclick="filterCourse('Database')">Database</button>
+<button onclick="filterCourse('UI/UX')">UI/UX</button>
+</section>
+
+<!-- COURSES -->
+<section class="course-section">
+<h2>Recommended Courses</h2>
+
+<div id="courseContainer" class="course-container"></div>
+<h2>My Enrolled Courses</h2>
+<div id="enrolledContainer"></div>
+
+</section>
+
+<!-- MODAL -->
+<div id="courseModal" class="modal">
+<div class="modal-content">
+
+<span class="close">&times;</span>
+
+<img id="modalImage">
+
+<h2 id="modalTitle"></h2>
+<p id="modalDescription"></p>
+
+<p><b>Duration:</b> <span id="modalDuration"></span></p>
+<p><b>Level:</b> <span id="modalLevel"></span></p>
+<p><b>Instructor:</b> <span id="modalInstructor"></span></p>
+<p><b>Students:</b> <span id="modalStudents"></span></p>
+<p><b>Rating:</b> ⭐ <span id="modalRating"></span></p>
+
+<button class="back-modal-btn" onclick="closeModal()">
+    ← Back
+</button>
+
+<button class="start-course">
+    Start Learning
+</button>
+
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 CareerWise</p>
+</footer>
+
+<script src="courses.js"></script>
+
+</body>
+</html>

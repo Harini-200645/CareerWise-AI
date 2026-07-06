@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerWise - Enrollment Management</title>
+
+    <link rel="stylesheet" href="admin-enrollments.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>CareerWise - Enrollment Management</h1>
+
+    <div class="top-bar">
+        <button onclick="goBack()">← Back to Dashboard</button>
+
+        <h3>Total Enrollments :
+            <span id="totalEnrollments">0</span>
+        </h3>
+    </div>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Enrollment Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody id="enrollmentTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="admin-enrollments.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Details</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+            padding:30px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            color:#4f46e5;
+            margin-bottom:20px;
+            text-align:center;
+        }
+
+        h2{
+            color:#333;
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+
+        p{
+            color:#555;
+            line-height:1.8;
+        }
+
+        ul{
+            margin-left:25px;
+            color:#555;
+            line-height:1.8;
+        }
+
+        .back-btn{
+            background:#4f46e5;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:8px;
+            cursor:pointer;
+            margin-bottom:20px;
+        }
+
+        .back-btn:hover{
+            background:#4338ca;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <button class="back-btn"
+        onclick="window.location.href='explorer.html'">
+        ← Back to Career Explorer
+    </button>
+
+    <h1 id="careerTitle">
+        Career Details
+    </h1>
+
+    <div id="careerContent"></div>
+
+</div>
+
+<script>
+
+let career = localStorage.getItem("selectedCareer");
+
+document.getElementById("careerTitle").innerHTML = career;
+
+let content = "";
+
+if(career === "Software Engineer"){
+
+    content = `
+        <p>
+            Software Engineers develop applications, websites,
+            mobile apps and enterprise systems.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Java / Python</li>
+            <li>Data Structures & Algorithms</li>
+            <li>SQL</li>
+            <li>Web Development</li>
+            <li>Problem Solving</li>
+        </ul>
+
+        <h2>Career Growth</h2>
+        <p>
+            Junior Developer → Software Engineer →
+            Senior Engineer → Tech Lead → Software Architect
+        </p>
+
+        <h2>Recommended Courses</h2>
+        <ul>
+            <li>Java Programming</li>
+            <li>Spring Boot</li>
+            <li>React JS</li>
+            <li>Database Management</li>
+        </ul>
+    `;
+}
+
+else if(career === "AI/ML Engineer"){
+
+    content = `
+        <p>
+            AI/ML Engineers build intelligent systems using
+            Artificial Intelligence and Machine Learning.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Python</li>
+            <li>Machine Learning</li>
+            <li>Deep Learning</li>
+            <li>TensorFlow</li>
+            <li>Data Analysis</li>
+        </ul>
+
+        <h2>Career Growth</h2>
+        <p>
+            ML Intern → ML Engineer →
+            Senior AI Engineer → AI Architect
+        </p>
+
+        <h2>Recommended Courses</h2>
+        <ul>
+            <li>Machine Learning</li>
+            <li>Deep Learning</li>
+            <li>Artificial Intelligence</li>
+        </ul>
+    `;
+}
+
+else if(career === "Data Scientist"){
+
+    content = `
+        <p>
+            Data Scientists analyze data and generate business insights.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Python</li>
+            <li>Statistics</li>
+            <li>SQL</li>
+            <li>Machine Learning</li>
+            <li>Power BI</li>
+        </ul>
+
+        <h2>Career Growth</h2>
+        <p>
+            Data Analyst → Data Scientist →
+            Senior Data Scientist → Analytics Manager
+        </p>
+    `;
+}
+
+else if(career === "Cyber Security Analyst"){
+
+    content = `
+        <p>
+            Cyber Security Analysts protect systems and networks
+            from cyber attacks.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Networking</li>
+            <li>Ethical Hacking</li>
+            <li>Linux</li>
+            <li>Cyber Security Tools</li>
+            <li>Risk Analysis</li>
+        </ul>
+
+        <h2>Career Growth</h2>
+        <p>
+            Security Analyst → Security Engineer →
+            Security Architect → CISO
+        </p>
+    `;
+}
+
+else if(career === "Doctor"){
+
+    content = `
+        <p>
+            Doctors diagnose illnesses and provide medical treatment.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Medical Knowledge</li>
+            <li>Communication</li>
+            <li>Patient Care</li>
+            <li>Critical Thinking</li>
+        </ul>
+
+        <h2>Education</h2>
+        <p>
+            MBBS → Specialization → Medical Practice
+        </p>
+    `;
+}
+
+else if(career === "Teacher"){
+
+    content = `
+        <p>
+            Teachers educate students and help them develop skills.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Communication</li>
+            <li>Subject Knowledge</li>
+            <li>Leadership</li>
+            <li>Patience</li>
+        </ul>
+
+        <h2>Career Growth</h2>
+        <p>
+            Teacher → Senior Teacher →
+            Head of Department → Principal
+        </p>
+    `;
+}
+
+else if(career === "Graphic Designer"){
+
+    content = `
+        <p>
+            Graphic Designers create visual content for brands,
+            websites and marketing campaigns.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li>Creativity</li>
+            <li>Typography</li>
+        </ul>
+    `;
+}
+
+else if(career === "Entrepreneur"){
+
+    content = `
+        <p>
+            Entrepreneurs create and manage businesses while
+            solving real-world problems.
+        </p>
+
+        <h2>Required Skills</h2>
+        <ul>
+            <li>Leadership</li>
+            <li>Marketing</li>
+            <li>Finance</li>
+            <li>Business Strategy</li>
+        </ul>
+    `;
+}
+
+else{
+
+    content = `
+        <p>
+            Explore this career path, required skills,
+            education requirements and future opportunities.
+        </p>
+    `;
+}
+
+document.getElementById("careerContent").innerHTML = content;
+
+</script>
+
+</body>
+</html>
