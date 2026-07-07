@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerWise Certificate</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#eef2ff;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+.certificate{
+
+background:white;
+
+max-width:900px;
+
+margin:auto;
+
+padding:50px;
+
+border:12px solid #2563eb;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+font-size:35px;
+
+font-weight:bold;
+
+color:#2563eb;
+
+margin-bottom:25px;
+
+}
+
+h1{
+
+font-size:42px;
+
+color:#1e3a8a;
+
+margin-bottom:25px;
+
+}
+
+h2{
+
+font-size:38px;
+
+color:#111827;
+
+margin:20px 0;
+
+}
+
+h3{
+
+font-size:30px;
+
+color:#2563eb;
+
+margin:20px 0;
+
+}
+
+h4{
+
+margin-top:15px;
+
+font-size:20px;
+
+}
+
+p{
+
+font-size:18px;
+
+margin-top:15px;
+
+}
+
+.footer{
+
+margin-top:70px;
+
+display:flex;
+
+justify-content:space-around;
+
+}
+
+.buttons{
+
+margin-top:35px;
+
+}
+
+.buttons button{
+
+padding:15px 25px;
+
+margin:10px;
+
+border:none;
+
+background:#2563eb;
+
+color:white;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+</style>
+
+<body>
+
+<div class="certificate" id="certificate">
+
+    <div class="logo">
+        🎓 CareerWise AI
+    </div>
+
+    <h1>Certificate of Completion</h1>
+
+    <p>This certificate is proudly presented to</p>
+
+    <h2 id="studentName"></h2>
+
+    <p>for successfully completing the course</p>
+
+    <h3 id="courseName"></h3>
+
+    <p>Completion Date</p>
+
+    <h4 id="date"></h4>
+
+    <div class="footer">
+
+        <div>
+            ______________________
+            <br>
+            CareerWise AI
+        </div>
+
+        <div>
+            ______________________
+            <br>
+            Course Instructor
+        </div>
+
+    </div>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="downloadPDF()">
+📄 Download Certificate
+</button>
+
+<button onclick="location.href='dashboard.html'">
+🏠 Dashboard
+</button>
+
+</div>
+
+<script >
+    const student = localStorage.getItem("userName");
+const course = localStorage.getItem("selectedCourse");
+
+document.getElementById("studentName").innerHTML = student;
+
+document.getElementById("courseName").innerHTML = course;
+
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString();
+
+function downloadPDF(){
+
+const element=document.getElementById("certificate");
+
+html2pdf().from(element).save(student + "-" + course + "-Certificate.pdf");
+
+}
+</script>>
+
+</body>
+</html>

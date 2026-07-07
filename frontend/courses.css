@@ -1,0 +1,86 @@
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#f4f7fb;color:#222}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:#0f172a;color:#fff;position:sticky;top:0;z-index:10}
+.logo{font-size:26px;font-weight:700}
+.search-box{position:relative;width:40%}
+.search-box input{width:100%;padding:12px 42px 12px 16px;border:none;border-radius:30px}
+.search-box i{position:absolute;right:16px;top:13px;color:#666}
+.back-btn{background:#2563eb;color:#fff;border:none;padding:10px 18px;border-radius:25px;cursor:pointer}
+.back-btn:hover{background:#1d4ed8}
+.hero{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;text-align:center;padding:70px 20px}
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero p{max-width:700px;margin:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;padding:35px 40px}
+.stat-card{background:#fff;border-radius:16px;padding:25px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.stat-card h2{color:#2563eb;font-size:34px}
+.categories{display:flex;flex-wrap:wrap;gap:10px;padding:10px 40px 30px;justify-content:center}
+.categories button{border:none;background:#e5e7eb;padding:10px 18px;border-radius:20px;cursor:pointer;transition:.3s}
+.categories button:hover,.categories .active{background:#2563eb;color:#fff}
+.course-section{padding:20px 40px 60px}
+.title{text-align:center;margin-bottom:25px}
+.course-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.08);transition:.3s}
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-content{padding:18px}
+.card h2{font-size:22px;margin-bottom:8px}
+.meta{display:flex;justify-content:space-between;color:#666;font-size:14px;margin-bottom:10px}
+.level{display:inline-block;background:#dbeafe;color:#1d4ed8;padding:5px 10px;border-radius:15px;font-size:13px;margin-bottom:10px}
+.desc{color:#555;line-height:1.6;min-height:72px}
+.instructor{margin:12px 0;font-size:14px;color:#444}
+.buttons{display:flex;gap:10px}
+.buttons button{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer}
+.buttons button:first-child{background:#e5e7eb}
+.start{background:#22c55e;color:#fff}
+.start:hover{background:#16a34a}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);justify-content:center;align-items:center;padding:20px}
+.modal-content{background:#fff;border-radius:16px;max-width:700px;width:100%;padding:25px;position:relative}
+.modal-content img{width:100%;height:250px;object-fit:cover;border-radius:12px;margin-bottom:15px}
+.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}
+.modal-info p{margin:8px 0}
+.start-course{margin-top:15px;width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px}
+footer{background:#0f172a;color:#fff;text-align:center;padding:30px}
+@media(max-width:768px){
+header{flex-direction:column;gap:15px;padding:20px}
+.search-box{width:100%}
+.hero h1{font-size:32px}
+.course-section,.stats,.categories{padding-left:20px;padding-right:20px}}
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.enroll-btn {
+    background: green;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.enrolled-card {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+.back-modal-btn{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#6c757d;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.back-modal-btn:hover{
+    background:#495057;
+}

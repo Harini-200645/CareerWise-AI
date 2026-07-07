@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - CareerWise AI</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h2>CareerWise AI</h2>
+        <h3>Admin Login</h3>
+
+        <form id="adminLoginForm">
+
+            <input type="email" id="email"
+                   placeholder="Admin Email" required>
+
+            <input type="password" id="password"
+                   placeholder="Admin Password" required>
+
+           <div class="button-group">
+
+    <button type="submit" id="loginButton">
+        Login
+    </button>
+
+    <button type="button"
+            onclick="window.location.href='admin-register.html'">
+        Back
+    </button>
+
+</div>
+
+        </form>
+
+        <p id="message"
+           style="text-align:center; margin-top:15px; font-weight:bold;">
+        </p>
+
+        <p>
+            <a href="admin-register.html">Register as Admin</a>
+        </p>
+
+        <p>
+            <a href="login.html">User Login</a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+document.getElementById("adminLoginForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const messageBox = document.getElementById("message");
+    const loginButton = document.getElementById("loginButton");
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    loginButton.disabled = true;
+    loginButton.innerText = "Logging in...";
+    messageBox.innerText = "";
+
+    try {
+        const response = await fetch("http://localhost:8082/users/admin/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage || "Invalid Admin Credentials");
+        }
+
+        const admin = await response.json();
+
+        localStorage.setItem("userId", admin.id);
+        localStorage.setItem("userName", admin.name);
+        localStorage.setItem("userEmail", admin.email);
+        localStorage.setItem("userRole", admin.role);
+
+        messageBox.style.color = "green";
+        messageBox.innerText = "Admin login successful!";
+
+        setTimeout(function () {
+            window.location.href = "admin.html";
+        }, 800);
+
+    } catch (error) {
+        console.error(error);
+
+        messageBox.style.color = "red";
+        messageBox.innerText = error.message || "Invalid Admin Credentials";
+
+        loginButton.disabled = false;
+        loginButton.innerText = "Login";
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerWise AI Result</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#eef2f7;
+display:flex;
+min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:250px;
+background:#111827;
+color:white;
+padding:30px 20px;
+position:fixed;
+height:100%;
+}
+
+.sidebar h2{
+color:#6366f1;
+margin-bottom:40px;
+text-align:center;
+}
+
+.menu{
+list-style:none;
+}
+
+.menu li{
+padding:15px;
+margin-bottom:10px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.menu li:hover{
+background:#374151;
+}
+
+/* Main */
+
+.main{
+
+margin-left:250px;
+
+padding:35px;
+
+width:100%;
+
+}
+
+/* Header */
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+.header h1{
+
+color:#111827;
+
+}
+
+.header p{
+
+color:#6b7280;
+
+}
+
+/* Grid */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+}
+
+/* Cards */
+
+.card{
+
+background:white;
+
+border-radius:15px;
+
+padding:25px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* Career */
+
+.career{
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#4f46e5;
+
+margin-top:10px;
+
+}
+
+/* Percentage */
+
+.circle{
+
+width:150px;
+
+height:150px;
+
+border-radius:50%;
+
+background:conic-gradient(#4f46e5 0deg,#4f46e5 320deg,#ddd 320deg);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:auto;
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#111827;
+
+}
+
+/* Skill Bars */
+
+.skill{
+
+margin-top:20px;
+
+}
+
+.skill label{
+
+font-weight:600;
+
+display:block;
+
+margin-bottom:8px;
+
+}
+
+.bar{
+
+height:12px;
+
+background:#ddd;
+
+border-radius:30px;
+
+overflow:hidden;
+
+}
+
+.fill{
+
+height:12px;
+
+width:0%;
+
+background:#4f46e5;
+
+transition:1s;
+
+}
+
+/* Button */
+
+.btn{
+
+margin-top:25px;
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+background:#4f46e5;
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#3730a3;
+
+}
+
+/* Loading */
+
+.loading{
+
+font-size:18px;
+
+color:#666;
+
+margin-top:20px;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.sidebar{
+
+display:none;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>CareerWise AI</h2>
+
+<ul class="menu">
+
+<li>🏠 Dashboard</li>
+
+<li>📝 Quiz Result</li>
+
+<li>🤖 AI Recommendation</li>
+
+<li>📈 Skill Gap</li>
+
+<li>🛣 Learning Roadmap</li>
+
+<li>👤 Profile</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>AI Career Analysis</h1>
+
+<p>Your personalized career intelligence report</p>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<!-- LEFT -->
+
+<div>
+
+<div class="card">
+
+<h2>Top Career Match</h2>
+
+<div
+class="career"
+id="career">
+
+Loading...
+
+</div>
+
+<p
+id="summary"
+class="loading">
+
+Analyzing your profile...
+
+</p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Why AI Recommended This?</h2>
+
+<p
+id="reason">
+
+Please wait...
+
+</p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Student Information</h2>
+
+<p><b>Name:</b> <span id="name"></span></p>
+
+<p><b>Education:</b> <span id="education"></span></p>
+
+<p><b>Department:</b> <span id="department"></span></p>
+
+<p><b>Year:</b> <span id="year"></span></p>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div>
+
+<div class="card">
+
+<h2 style="text-align:center">
+
+Career Match
+
+</h2>
+
+<div class="circle">
+
+95%
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Skill Analysis</h3>
+
+<div class="skill">
+
+<label>Technology</label>
+
+<div class="bar">
+
+<div class="fill" id="techBar"></div>
+
+</div>
+
+</div>
+
+<div class="skill">
+
+<label>Business</label>
+
+<div class="bar">
+
+<div class="fill" id="businessBar"></div>
+
+</div>
+
+</div>
+
+<div class="skill">
+
+<label>Creative</label>
+
+<div class="bar">
+
+<div class="fill" id="creativeBar"></div>
+
+</div>
+
+</div>
+
+<div class="skill">
+
+<label>Medical</label>
+
+<div class="bar">
+
+<div class="fill" id="medicalBar"></div>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="goRecommendation()">
+
+View Full AI Report →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// ================================
+// LOAD STUDENT DETAILS
+// ================================
+
+document.getElementById("name").innerText =
+localStorage.getItem("name") || "Student";
+
+document.getElementById("education").innerText =
+localStorage.getItem("education") || "-";
+
+document.getElementById("department").innerText =
+localStorage.getItem("department") || "-";
+
+document.getElementById("year").innerText =
+localStorage.getItem("year") || "-";
+
+
+// ================================
+// GET QUIZ DATA
+// ================================
+
+const score =
+JSON.parse(localStorage.getItem("score"));
+
+const skills =
+JSON.parse(localStorage.getItem("skills"));
+
+const interests =
+JSON.parse(localStorage.getItem("interests"));
+
+const strengths =
+JSON.parse(localStorage.getItem("strengths"));
+
+
+// ================================
+// UPDATE SKILL BARS
+// ================================
+
+function updateSkillBars(){
+
+const total = 10;
+
+document.getElementById("techBar").style.width =
+((score?.TECH || 0)/total)*100 + "%";
+
+document.getElementById("businessBar").style.width =
+((score?.BUSINESS || 0)/total)*100 + "%";
+
+document.getElementById("creativeBar").style.width =
+((score?.CREATIVE || 0)/total)*100 + "%";
+
+document.getElementById("medicalBar").style.width =
+((score?.MEDICAL || 0)/total)*100 + "%";
+
+}
+
+updateSkillBars();
+
+
+// ================================
+// CALL SPRING BOOT API
+// ================================
+
+window.onload=function(){
+
+fetch("http://localhost:8082/api/recommendation",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+name:localStorage.getItem("name"),
+
+education:localStorage.getItem("education"),
+
+skills:skills,
+
+interests:interests,
+
+strengths:strengths
+
+})
+
+})
+
+.then(response=>{
+
+if(!response.ok){
+
+throw new Error("Server Error");
+
+}
+
+return response.json();
+
+})
+
+.then(data=>{
+
+console.log(data);
+
+// Save AI Response
+
+localStorage.setItem(
+"aiResult",
+JSON.stringify(data)
+);
+
+// Career
+
+document.getElementById("career").innerHTML =
+data.career;
+
+// Summary
+
+document.getElementById("summary").innerHTML =
+data.summary;
+
+// Reason
+
+document.getElementById("reason").innerHTML =
+data.reason;
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+// Offline Mode
+
+document.getElementById("career").innerHTML =
+localStorage.getItem("recommendedCareer");
+
+document.getElementById("summary").innerHTML =
+"Showing local career analysis because AI server is unavailable.";
+
+document.getElementById("reason").innerHTML =
+"Recommendation generated using your quiz responses.";
+
+});
+
+};
+
+
+// ================================
+// NEXT PAGE
+// ================================
+
+function goRecommendation(){
+
+window.location.href="recommendation.html";
+
+}
+
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

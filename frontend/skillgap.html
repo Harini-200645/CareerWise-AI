@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerWise | Skill Gap Analysis</title>
+
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#1e293b;
+}
+
+/* Header */
+
+header{
+    background:#2563eb;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:700;
+}
+
+header button{
+    background:#fff;
+    color:#2563eb;
+    border:none;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+header button:hover{
+    background:#dbeafe;
+}
+
+/* Hero */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:18px;
+    opacity:.9;
+}
+
+/* Container */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* Cards */
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h2{
+    color:#2563eb;
+    margin-bottom:18px;
+    border-bottom:2px solid #e2e8f0;
+    padding-bottom:10px;
+}
+
+.card h3{
+    margin-top:10px;
+    color:#1e293b;
+}
+
+/* Progress Bar */
+
+.progress{
+    width:100%;
+    height:22px;
+    background:#e5e7eb;
+    border-radius:30px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+#progressBar{
+    height:100%;
+    width:0%;
+    background:#16a34a;
+    transition:width .6s ease;
+}
+
+#progressText{
+    text-align:center;
+    color:#2563eb;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* Lists */
+
+ul{
+    list-style:none;
+}
+
+ul li{
+    background:#f8fafc;
+    margin:10px 0;
+    padding:12px;
+    border-left:5px solid #2563eb;
+    border-radius:8px;
+    font-size:15px;
+}
+
+/* Learning Plan */
+
+#learningPlan{
+    line-height:1.8;
+    color:#475569;
+    font-size:16px;
+}
+
+/* Status Colors */
+
+.completed{
+    border-left-color:#16a34a;
+    color:#15803d;
+    font-weight:600;
+}
+
+.missing{
+    border-left-color:#dc2626;
+    color:#dc2626;
+    font-weight:600;
+}
+
+/* Footer */
+
+footer{
+    margin-top:50px;
+    background:#1e293b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:15px;
+}
+
+.hero h1{
+    font-size:30px;
+}
+
+.container{
+    grid-template-columns:1fr;
+}
+
+}
+</style>
+
+<body>
+
+<header>
+
+<div class="logo">
+ CareerWise 
+</div>
+
+<button onclick="location.href='dashboard.html'">
+<i class="fas fa-arrow-left"></i>
+Dashboard
+</button>
+
+</header>
+
+<section class="hero">
+
+<h1>📊 Skill Gap Analysis</h1>
+
+<p>
+Compare your current skills with the skills required for your AI recommended career.
+</p>
+
+</section>
+
+<div class="container">
+
+    <!-- AI Career -->
+
+    <div class="card">
+
+        <h2>
+            🎯 Recommended Career
+        </h2>
+
+        <h3 id="careerName">
+            Loading...
+        </h3>
+
+    </div>
+
+    <!-- Progress -->
+
+    <div class="card">
+
+        <h2>
+            📈 Career Readiness
+        </h2>
+
+        <div class="progress">
+
+            <div
+            id="progressBar">
+            </div>
+
+        </div>
+
+        <h3 id="progressText">
+            50%
+        </h3>
+
+    </div>
+
+    <!-- Current Skills -->
+
+    <div class="card">
+
+        <h2>
+            ✅ Your Skills
+        </h2>
+
+        <ul id="userSkills">
+
+        </ul>
+
+    </div>
+
+    <!-- Missing Skills -->
+
+    <div class="card">
+
+        <h2>
+            Skills To Learn
+        </h2>
+
+        <ul id="missingSkills">
+
+        </ul>
+
+    </div>
+
+    <!-- Recommended Courses -->
+
+    <div class="card">
+
+        <h2>
+            📚 Recommended Courses
+        </h2>
+
+        <ul id="courseList">
+
+        </ul>
+
+    </div>
+
+    <!-- Learning Path -->
+
+    <div class="card">
+
+        <h2>
+            🚀 Next Learning Plan
+        </h2>
+
+        <div id="learningPlan">
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+
+© 2026 CareerWise AI
+
+</footer>
+
+<script src="skillgap.js"></script>
+
+</body>
+
+</html>

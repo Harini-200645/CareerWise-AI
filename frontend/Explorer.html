@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Explorer - CareerWise AI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+header{
+    background:#4f46e5;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:90%;
+    margin:30px auto;
+}
+
+.title{
+    text-align:center;
+    color:#333;
+    margin-bottom:30px;
+}
+
+.career-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.career-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.career-card:hover{
+    transform:translateY(-5px);
+}
+
+.career-card h3{
+    color:#4f46e5;
+    margin-bottom:10px;
+}
+
+.career-card p{
+    color:#555;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.career-card button{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.career-card button:hover{
+    background:#4338ca;
+}
+.back-btn{
+            background:#4f46e5;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:8px;
+            cursor:pointer;
+            margin-bottom:20px;
+        }
+
+        .back-btn:hover{
+            background:#4338ca;
+        }
+
+</style>
+</head>
+<body>
+    <button class="back-btn"
+        onclick="window.location.href='index.html'">
+        ← go back
+    </button>
+
+<header>
+    <h1>Career Explorer</h1>
+    <p>Explore different career opportunities and find your future path</p>
+</header>
+
+<div class="container">
+
+    <h2 class="title">Popular Career Paths</h2>
+
+    <div class="career-grid">
+
+        <div class="career-card">
+            <h3>Software Engineer</h3>
+            <p>
+                Design, develop and maintain software applications
+                for businesses and users.
+            </p>
+            <button onclick="showCareer('Software Engineer')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>AI / ML Engineer</h3>
+            <p>
+                Build intelligent systems using Artificial Intelligence
+                and Machine Learning technologies.
+            </p>
+            <button onclick="showCareer('AI/ML Engineer')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Data Scientist</h3>
+            <p>
+                Analyze large datasets and generate insights for
+                decision-making.
+            </p>
+            <button onclick="showCareer('Data Scientist')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Cyber Security Analyst</h3>
+            <p>
+                Protect organizations from cyber threats and
+                security attacks.
+            </p>
+            <button onclick="showCareer('Cyber Security Analyst')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Doctor</h3>
+            <p>
+                Diagnose illnesses and provide medical treatment
+                to patients.
+            </p>
+            <button onclick="showCareer('Doctor')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Teacher</h3>
+            <p>
+                Educate and inspire students in schools,
+                colleges and universities.
+            </p>
+            <button onclick="showCareer('Teacher')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Graphic Designer</h3>
+            <p>
+                Create visual content, branding materials and
+                digital designs.
+            </p>
+            <button onclick="showCareer('Graphic Designer')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Entrepreneur</h3>
+            <p>
+                Start and manage businesses while creating
+                innovative solutions.
+            </p>
+            <button onclick="showCareer('Entrepreneur')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Mechanical Engineer</h3>
+            <p>
+                Design machines, manufacturing systems and
+                mechanical products.
+            </p>
+            <button onclick="showCareer('Mechanical Engineer')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Civil Engineer</h3>
+            <p>
+                Plan and construct buildings, roads, bridges
+                and infrastructure projects.
+            </p>
+            <button onclick="showCareer('Civil Engineer')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>Business Analyst</h3>
+            <p>
+                Analyze business processes and recommend
+                improvements for growth.
+            </p>
+            <button onclick="showCareer('Business Analyst')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="career-card">
+            <h3>UI/UX Designer</h3>
+            <p>
+                Design user-friendly interfaces and improve
+                digital experiences.
+            </p>
+            <button onclick="showCareer('UI/UX Designer')">
+                Learn More
+            </button>
+        </div>
+</div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showCareer(career){
+
+    localStorage.setItem("selectedCareer", career);
+
+    window.location.href = "career detail.html";
+}
+</script>
+
+</body>
+</html>

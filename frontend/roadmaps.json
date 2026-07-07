@@ -1,0 +1,45 @@
+{
+  "Software Developer": [
+    {
+      "title": "🎓 Step 1 - Education",
+      "desc": "Complete B.E/B.Tech CSE, IT, BCA or MCA."
+    },
+    {
+      "title": "💻 Step 2 - Programming",
+      "desc": "Learn C, C++, Java, Python."
+    },
+    {
+      "title": "🎉 Career Outcome",
+      "desc": "Software Engineer",
+      "result": true
+    }
+  ],
+
+  "AI Engineer": [
+    {
+      "title": "🎓 Step 1",
+      "desc": "Complete B.Tech CSE / AI."
+    },
+    {
+      "title": "🐍 Step 2",
+      "desc": "Master Python."
+    },
+    {
+      "title": "🎉 Career Outcome",
+      "desc": "AI Engineer",
+      "result": true
+    }
+  ],
+
+  "ECE": [
+    {
+      "title": "🎓 Step 1",
+      "desc": "Complete ECE Degree."
+    },
+    {
+      "title": "🎉 Career Outcome",
+      "desc": "ECE Engineer",
+      "result": true
+    }
+  ]
+}

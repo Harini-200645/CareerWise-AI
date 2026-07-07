@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Course Learning</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#eef2ff;
+padding:30px;
+}
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+header button{
+
+padding:12px 18px;
+
+border:none;
+
+background:#2563eb;
+
+color:white;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.course-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+margin-bottom:25px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.course-card h2{
+
+margin-bottom:15px;
+
+color:#1e3a8a;
+
+}
+
+.course-card ul{
+
+padding-left:20px;
+
+line-height:2;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:20px;
+
+}
+
+.startBtn{
+
+flex:1;
+
+padding:15px;
+
+background:#2563eb;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+.completeBtn{
+
+flex:1;
+
+padding:15px;
+
+background:#16a34a;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+</style>
+
+<body>
+
+<header>
+
+<h2 id="courseTitle"></h2>
+
+<button onclick="location.href='my-courses.html'">
+← Back
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="course-card">
+
+<h2>Course Overview</h2>
+
+<p id="courseDescription">
+Welcome to this course. Complete all modules to earn your certificate.
+</p>
+
+</div>
+
+<div class="course-card">
+
+<h2>Course Modules</h2>
+
+<ul>
+
+<li>✅ Introduction</li>
+
+<li>✅ Basics</li>
+
+<li>✅ Intermediate Concepts</li>
+
+<li>✅ Advanced Topics</li>
+
+<li>✅ Mini Project</li>
+
+<li>✅ Final Assessment</li>
+
+</ul>
+
+</div>
+
+<div class="course-card">
+
+<h2>Learning Resources</h2>
+
+<ul>
+
+<li>📄 PDF Notes</li>
+
+<li>🎥 Video Lectures</li>
+
+<li>💻 Coding Exercises</li>
+
+<li>📝 Practice Quiz</li>
+
+</ul>
+
+</div>
+
+<div class="buttons">
+
+<button class="startBtn" onclick="startCourse()">
+
+▶ Start Learning
+
+</button>
+
+<button class="completeBtn" onclick="completeCourse()">
+
+✔ Mark as Completed
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+    const course = localStorage.getItem("selectedCourse");
+
+document.getElementById("courseTitle").innerHTML = course;
+
+document.getElementById("courseDescription").innerHTML =
+"You are currently learning <b>" +
+course +
+"</b>. Complete every module and the final assessment to receive your CareerWise AI Certificate.";
+
+function startCourse(){
+
+alert("Course Started!");
+
+}
+
+function completeCourse(){
+
+alert("Congratulations!\n\nYou completed " + course);
+
+window.location.href="certificate.html";
+
+}
+</script>
+
+</body>
+</html>

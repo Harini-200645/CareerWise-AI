@@ -1,0 +1,25 @@
+@media(max-width:768px){
+
+.card-container{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+
+.main-content{
+    margin-left:0;
+}
+
+.profile-card{
+    width:100%;
+}
+
+.auth-card{
+    width:90%;
+}
+
+}

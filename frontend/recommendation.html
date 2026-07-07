@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CareerWise AI Recommendation</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f5faf3;
+display:flex;
+min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+
+width:250px;
+
+background:#515155;
+
+color:white;
+
+position:fixed;
+
+height:100%;
+
+padding:25px;
+
+}
+
+.sidebar h2{
+
+color:#6366f1;
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+}
+
+.sidebar li{
+
+padding:15px;
+
+margin-bottom:10px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.sidebar li:hover{
+
+background:#eaedf1;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:250px;
+
+padding:35px;
+
+width:100%;
+
+}
+
+/* Title */
+
+.header{
+
+margin-bottom:30px;
+
+}
+
+.header h1{
+
+color:#4f46e5;
+
+font-size:34px;
+
+}
+
+.header p{
+
+color:#d6a437;
+
+margin-top:10px;
+
+}
+
+/* Grid */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:25px;
+
+}
+
+/* Card */
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+color:#4f46e5;
+
+margin-bottom:20px;
+
+}
+
+ul{
+
+padding-left:20px;
+
+}
+
+li{
+
+margin-bottom:12px;
+
+}
+
+/* Career */
+
+#career{
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#4f46e5;
+
+margin-bottom:15px;
+
+}
+
+/* Salary */
+
+.salary{
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#16a34a;
+
+}
+
+/* Button */
+
+.btn{
+
+margin-top:30px;
+
+padding:15px 30px;
+
+background:#4f46e5;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#3730a3;
+
+}
+
+@media(max-width:900px){
+
+.sidebar{
+
+display:none;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>CareerWise AI</h2>
+
+<ul>
+
+<li> Dashboard</li>
+
+<li> Quiz</li>
+
+<li> Recommendation</li>
+
+<li> Skill Gap</li>
+
+<li> Roadmap</li>
+
+<li> Profile</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="header">
+
+<h1>Career Recommendation</h1>
+
+<p>Your complete personalized career report</p>
+
+</div>
+
+<div class="grid">
+
+<!-- Career -->
+
+<div class="card">
+
+<h2>Top Career</h2>
+
+<div id="career">
+
+Loading...
+
+</div>
+
+<p id="summary">
+
+Analyzing profile...
+
+</p>
+
+</div>
+
+<!-- Why -->
+
+<div class="card">
+
+<h2>Why AI Selected This?</h2>
+
+<p id="reason">
+
+Please wait...
+
+</p>
+
+</div>
+
+<!-- Skills -->
+
+<div class="card">
+
+<h2>Skills Required</h2>
+
+<ul id="skills">
+
+</ul>
+
+</div>
+
+<!-- Courses -->
+
+<div class="card">
+
+<h2>Recommended Courses</h2>
+
+<ul id="courses">
+
+</ul>
+
+</div>
+
+<!-- Roadmap -->
+
+<div class="card">
+
+<h2>Learning Roadmap</h2>
+
+<ul id="roadmap">
+
+</ul>
+
+</div>
+
+<!-- Companies -->
+
+<div class="card">
+
+<h2>Top Hiring Companies</h2>
+
+<ul id="companies">
+
+</ul>
+
+</div>
+
+<!-- Salary -->
+
+<div class="card">
+
+<h2>Average Salary</h2>
+
+<div
+class="salary"
+id="salary">
+
+Loading...
+
+</div>
+
+</div>
+
+<!-- Future -->
+
+<div class="card">
+
+<h2>Future Scope</h2>
+
+<p id="future">
+
+Loading...
+
+</p>
+
+</div>
+
+</div>
+
+<button
+
+class="btn"
+
+onclick="goDashboard()">
+
+← Back to Dashboard
+
+</button>
+
+<script>
+const careerData = {
+
+    "AI Engineer / Software Developer": {
+        salary: "₹10 - ₹30 LPA",
+        future: "High demand in AI, ML, Cloud, and Software Industry.",
+        companies: ["Google", "Microsoft", "Amazon", "OpenAI", "Infosys"],
+        skills: ["Java", "Python", "AI", "Machine Learning", "SQL"]
+    },
+
+    "Doctor / Medical Professional": {
+        salary: "₹8 - ₹25 LPA",
+        future: "Medical professionals are always in high demand globally.",
+        companies: ["AIIMS", "Apollo Hospitals", "Fortis", "Max Healthcare"],
+        skills: ["Biology", "Patient Care", "Medical Ethics"]
+    },
+
+    "UI/UX Designer / Graphic Designer": {
+        salary: "₹5 - ₹18 LPA",
+        future: "Design field is growing rapidly in digital industry.",
+        companies: ["Adobe", "Zoho", "Google", "Freshworks"],
+        skills: ["Figma", "Photoshop", "UI Design", "Creativity"]
+    },
+
+    "Entrepreneur / Business Analyst": {
+        salary: "₹7 - ₹20 LPA",
+        future: "Business analytics and startups are growing rapidly.",
+        companies: ["Deloitte", "Accenture", "EY", "KPMG"],
+        skills: ["Leadership", "Finance", "Marketing", "Analytics"]
+    }
+};
+
+window.onload = function () {
+
+    const recommendation =
+        JSON.parse(localStorage.getItem("careerRecommendation"));
+
+    if (!recommendation) {
+        alert("No recommendation found. Please complete the quiz first.");
+        window.location.href = "quiz.html";
+        return;
+    }
+
+    // ======================
+    // CAREER NAME FIX
+    // ======================
+    let careerName =
+        recommendation.recommendedCareerTitle ||
+        recommendation.career;
+
+    const map = {
+        "UI/UX Designer": "UI/UX Designer / Graphic Designer",
+        "AI Engineer": "AI Engineer / Software Developer",
+        "Doctor": "Doctor / Medical Professional",
+        "Entrepreneur": "Entrepreneur / Business Analyst"
+    };
+
+    careerName = map[careerName] || careerName;
+
+    const info = careerData[careerName];
+
+    // ======================
+    // BASIC INFO
+    // ======================
+    document.getElementById("career").innerText =
+        careerName || "Not Available";
+
+    document.getElementById("summary").innerText =
+        recommendation.summary || "AI analyzing your profile...";
+
+    document.getElementById("reason").innerText =
+        recommendation.reason || "No reason available.";
+
+    // ======================
+    // SKILLS (FIXED - IMPORTANT)
+    // ======================
+    const skillsList = document.getElementById("skills");
+    skillsList.innerHTML = "";
+
+    let skillsData =
+        (recommendation.skills && recommendation.skills.length > 0)
+        ? recommendation.skills
+        : (info ? info.skills : []);
+
+    (skillsData || []).forEach(skill => {
+        skillsList.innerHTML += `<li>${skill}</li>`;
+    });
+
+    // ======================
+    // COURSES
+    // ======================
+    const coursesList = document.getElementById("courses");
+    coursesList.innerHTML = "";
+
+    (recommendation.courses || [
+        "Skill-based Learning",
+        "Online Certification"
+    ]).forEach(course => {
+        coursesList.innerHTML += `<li>${course}</li>`;
+    });
+
+    // ======================
+    // ROADMAP
+    // ======================
+    const roadmapList = document.getElementById("roadmap");
+    roadmapList.innerHTML = "";
+
+    (recommendation.roadmap || [
+        "Start Learning",
+        "Practice Projects",
+        "Internship"
+    ]).forEach(step => {
+        roadmapList.innerHTML += `<li>${step}</li>`;
+    });
+
+    // ======================
+    // COMPANIES
+    // ======================
+    const companyList = document.getElementById("companies");
+    companyList.innerHTML = "";
+
+    if (info && info.companies) {
+        info.companies.forEach(company => {
+            companyList.innerHTML += `<li>${company}</li>`;
+        });
+    } else {
+        companyList.innerHTML = "<li>Companies not available</li>";
+    }
+
+    // ======================
+    // SALARY
+    // ======================
+    document.getElementById("salary").innerText =
+        recommendation.salary ||
+        (info ? info.salary : "₹3 - ₹10 LPA");
+
+    // ======================
+    // FUTURE
+    // ======================
+    document.getElementById("future").innerText =
+        recommendation.futureScope ||
+        (info ? info.future : "Career growth depends on your skills.");
+};
+
+// Back Button
+function goDashboard() {
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+
+</html>
